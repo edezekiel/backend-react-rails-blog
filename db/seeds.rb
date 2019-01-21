@@ -10,11 +10,5 @@ require 'faker'
 Article.destroy_all
 
 10.times do
-  a = Article.create(
-    title: Faker::StarWars.character,
-    text: Faker::StarWars.quote
-  )
-
-  Article.create(title: a.title, text: a.text)
-
+  Article.create(title: Faker::StarWars.character, text: Faker::StarWars.quote)
 end
