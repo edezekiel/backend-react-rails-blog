@@ -1,0 +1,93 @@
+<p>Using Javascript's <code>this</code> Keyword in React</p>
+
+<p>January 17, 2019</p>
+
+<p>In this post, I break down the keyword <code>this</code> and
+provide a quick example using React.</p>
+
+<strong><p>Why Should I Care About <code>this</code> in React?</p></strong>
+
+<p>My Flatiron cohort is finally getting to use React js! React has a ton
+of features that simplify writing front-end Javascript code.</p>
+
+<p>However, it's even more important to understand how the keyword
+<code>this</code> works. Whether you're defining a method, setting
+state, lifting state up, referring to props, etc., the value of
+<code>this</code> can make or break your app.</p>
+
+<strong><p><code>this</code> Scope in the Browser (Global)</p></strong>
+
+<p>If you type <code>this</code> in chrome's dev console, the console returns:</p>
+
+<p><code>Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ,
+  parent: Window, …}</code>.</p>
+
+<p>Check out my post <a href="http://edezekiel.com/blogs/12_13_2018.html">
+  Where is the DOM?</a> if you are interested in learning more about
+  the <code>window</code> object.</p>
+
+<strong><p><code>this</code> Scope Inside a New Object</p></strong>
+
+<p>Let's create a simple object and set some properties:</p>
+<script src="https://gist.github.com/edezekiel/54a8ff64664388da060e5b1c213adc61.js"></script>
+
+<p>Next, we can define a method called "mySum" on myObject. When mySum
+calls on <code>this</code>, <code>this</code> refers to myObject:</p>
+
+<script src="https://gist.github.com/edezekiel/2640a8d71e531f5d86b5b0877fdbe98b.js"></script>
+
+<strong><p>Arrow Functions: Explicitly Setting <code>this</code></p></strong>
+
+<p>As noted in Trey's article, there are several ways to explicitly set
+<code>this</code> on a function. One way is to use the arrow
+function introduced in ES6.</p>
+
+<p><a href="https://hacks.mozilla.org/2015/06/es6-in-depth-arrow-functions/">Here</a>
+is a great article by Jason Orendorff comparing the difference in behavior between
+ <code>this</code> in ordinary functions and arrow functions. </p>
+
+ <p>Jason explains it best:
+  <blockquote
+  cite="https://hacks.mozilla.org/2015/06/es6-in-depth-arrow-functions/">
+  <p>Arrow functions do not have their own <code>this</code> value. The value of
+    <code>this</code> inside an arrow function is always inherited from the enclosing
+    scope.</p>
+  </blockquote>
+</p>
+
+<strong><p>Refactoring a React js Example Using Arrow Functions</p></strong>
+
+<p>Facebook provides great <a href="https://reactjs.org/docs/getting-started.html">documentation</a>
+  on React JS. One of the "Main Concepts" in the getting started guide
+  explaines how to "lift state up."</p>
+
+<p>If you are not familiar with this concept, you should
+work through their <a href="https://reactjs.org/docs/lifting-state-up.html">Lifting State Up</a>
+guide before continuing with this article.</p>
+
+<p>Interestingly, in FB's example they use <code>bind</code> instead
+  of arrow functions to set the value of <code>this</code>:</p>
+
+<p><script src="https://gist.github.com/edezekiel/b5e4e344a39cd6182aec19d673e22a93.js"></script></p>
+
+<p>FB's example can easily be refactored using the arrow function
+  instead of bind:</p>
+
+<p><script src="https://gist.github.com/edezekiel/ece503d98749642af4c60c5d9197f7e1.js"></script></p>
+
+<p><a href="https://codepen.io/edezekiel/pen/GPaOMr">Here</a> is the codepen
+  to my version using the arrow function.</p>
+
+<strong><p>Weird Highlighting Error with Refactored CodePen Example</p></strong>
+
+<p>If you open my codepen you may notice a weird highlighting issue.
+The handleCelciusChange and handleFarenheitChange syntax highlighting
+is off. Codepen's syntax highlighter thinks the code is broken, but the
+JS(Babel) tool is still able to render the Calculator component.</p>
+
+<strong><p>Credits</p></strong>
+
+<p>Many thanks to Trey Alexander Davis for his article
+<a href="https://medium.com/byte-sized-react/what-is-this-in-react-25c62c31480">
+  "What is 'this' in React?"</a>
+</p>
