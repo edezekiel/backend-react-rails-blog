@@ -2,7 +2,7 @@ class Api::V1::ArticlesController < ApplicationController
     before_action :set_article, only: [:show,:update,:destroy]
 
     def index
-      articles = Article.all
+      articles = Article.all.order("created_at DESC")
       render json: articles, status: 200
     end
 
@@ -31,7 +31,7 @@ class Api::V1::ArticlesController < ApplicationController
       params.permit(:id, :title, :text)
     end
 
-    def set_article 
+    def set_article
       @article = Article.find(params[:id])
     end
   end

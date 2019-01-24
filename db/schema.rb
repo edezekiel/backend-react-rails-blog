@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_01_21_183139) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "text"
+    t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -26,7 +27,6 @@ ActiveRecord::Schema.define(version: 2019_01_21_183139) do
     t.string "email"
     t.string "password_digest"
     t.string "name"
-    t.string "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

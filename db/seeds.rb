@@ -9,6 +9,8 @@ require 'faker'
 
 Article.destroy_all
 
-10.times do
-  Article.create(title: Faker::StarWars.character, text: Faker::StarWars.quote)
-end
+Article.create(title: Faker::StarWars.character, text: Faker::StarWars.quote, date:"January 1, 2019")
+Article.create(title: Faker::StarWars.character, text: Faker::StarWars.quote, date:"January 2, 2019")
+Article.create(title: Faker::StarWars.character, text: Faker::StarWars.quote, date:"January 4, 2019")
+Article.create(title: Faker::StarWars.character, text: Faker::StarWars.quote, date:"January 5, 2019")
+Article.create(title: Faker::StarWars.character, text: Faker::StarWars.quote, date:"January 6, 2019")
