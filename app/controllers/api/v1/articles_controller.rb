@@ -28,7 +28,7 @@ class Api::V1::ArticlesController < ApplicationController
     private
 
     def article_params
-      params.permit(:id, :title, :text)
+      params.permit(:id, :title, :text, :date)
     end
 
     def set_article
