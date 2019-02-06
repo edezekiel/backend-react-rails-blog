@@ -29,12 +29,35 @@ state, lifting state up, referring to props, etc., the value of
 <strong><p><code>this</code> Scope Inside a New Object</p></strong>
 
 <p>Let's create a simple object and set some properties:</p>
-<script src="https://gist.github.com/edezekiel/54a8ff64664388da060e5b1c213adc61.js"></script>
+<pre><code>
+
+// create an empty object using the ES6 object initializer
+let myObject = {}
+
+myObject
+  >> {}
+
+// defining "a" and "b" properties and setting their values using dot notation
+myObject.a = 100
+myObject.b = 50
+</code></pre>
 
 <p>Next, we can define a method called "mySum" on myObject. When mySum
 calls on <code>this</code>, <code>this</code> refers to myObject:</p>
 
-<script src="https://gist.github.com/edezekiel/2640a8d71e531f5d86b5b0877fdbe98b.js"></script>
+<pre><code>
+// example demonstrating the scope of this inside an object
+myObject.mySum = function() {return this.a + this.b}
+
+myObject.mySum()
+  >>150
+
+// another example
+myObject.newFunction = function() {console.log(this)}
+
+myObject.newFunction()
+  >> {a: 100, b: 50, mySum: ƒ, newFunction: ƒ}
+</code></pre>
 
 <strong><p>Arrow Functions: Explicitly Setting <code>this</code></p></strong>
 
@@ -68,13 +91,41 @@ guide before continuing with this article.</p>
 <p>Interestingly, in FB's example they use <code>bind</code> instead
   of arrow functions to set the value of <code>this</code>:</p>
 
-<p><script src="https://gist.github.com/edezekiel/b5e4e344a39cd6182aec19d673e22a93.js"></script></p>
+<pre><code>
+// using .bind
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+    this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+    this.state = {temperature: '', scale: 'c'};
+  }
+
+  handleCelsiusChange(temperature) {
+    this.setState({scale: 'c', temperature});
+  }
+
+  handleFahrenheitChange(temperature) {
+    this.setState({scale: 'f', temperature});
+  }
+</code></pre>
 
 <p>FB's example can easily be refactored using the arrow function
   instead of bind:</p>
 
-<p><script src="https://gist.github.com/edezekiel/ece503d98749642af4c60c5d9197f7e1.js"></script></p>
+<pre><code>
+// using the arrow function
 
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {temperature: '', scale: 'c'};
+  }
+
+  handleCelsiusChange = (temperature) => {this.setState({scale: 'c', temperature});}
+
+  handleFahrenheitChange = (temperature) => {this.setState({scale: 'f', temperature});}
+</code></pre>
 <p><a href="https://codepen.io/edezekiel/pen/GPaOMr">Here</a> is the codepen
   to my version using the arrow function.</p>
 
